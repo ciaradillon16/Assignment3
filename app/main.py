@@ -54,7 +54,7 @@ class lightTester:
 #                         self.lights[i][j] = True
 #                     elif self.lights[i][j] == True:
 #                        self.lights = False
-        return self.lights
+        return self.lights[i][j]
                  
     def count(self):
         count = 0
@@ -62,26 +62,31 @@ class lightTester:
             for j in range (self.N): 
                 if self.lights[i][j]:
                     count += 1 
+                    
         return count
     
 def parse_file():
 #self.link = input("Enter the list of inputs: ")
+    #import sys
+    #f = sys.argv[]
 
     r = requests.get("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt")
     file = r.text.split('\n')
     N = file[0]
-    print(N)
+    #print(N)
     pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
+    mylight = lightTester(int(N))
     
     for line in file:  
         m = pat.match(line)
-        print
-        if m: 
+        if m:
             array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
-            print(array)
+#             print(array)
+            
+            mylight.apply(array)
         
-    mylight = lightTester(int(N))
-    mylight.apply(array)
+            
+    
     print(mylight.count())
     
 if __name__ == '__main__':

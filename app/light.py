@@ -1,15 +1,14 @@
-
-
-lights = [[0 for x in range(5)] for y in range(5)] 
+lights = [[0 for x in range(10)] for y in range(10)] 
 counter = 0
-total = 25
+total = 1000
 
 for i in range(len(lights)):
     for j in range(len(lights[i])):
         lights[i][j] = False #False - off   
 print(lights)
 
-lights[0][4] = True
+lights[0][9] = True
+lights[1][8] = True
 
 for i in range(len(lights)):
     for j in range(len(lights[i])):

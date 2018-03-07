@@ -1,11 +1,11 @@
 import requests
 import re
-
-#def main(filename, N): #files provided and first line of that file = N  
-    
-    #lights = lightTester(N)
-#     instructions = lights.parse_file(filename)
+import sys
+# def main(filename, N): #files provided and first line of that file = N  
 #     
+#     lights = lightTester(N)
+#     instructions = lights.parse_file(filename)
+# #     
 #     for cmd in instructions:
 #         lights.apply(cmd)
 
@@ -34,60 +34,49 @@ class lightTester:
         x1 = self.size(int(array[3]))
         y1 = self.size(int(array[4]))
     
-        if cmd == 'turn off' or cmd == 'turn off ':
-            for i in range(y, y1+1):
-                for j in range(x, x1+1):
-                    self.lights[i][j] = False                
-            #return self.lights
-        
-        elif cmd == 'turn on' or cmd == 'turn on ':
-            for i in range(y, y1+1):
-                for j in range(x, x1+1):
+        for i in range(min(y, y1), max(y, y1)+1):
+            for j in range(min(x, x1), max(x, x1)+1):
+                    
+                if cmd == 'turn off' or cmd == 'turn off ':
+                    self.lights[i][j] = False           
+            
+                elif cmd == 'turn on' or cmd == 'turn on ':
                     self.lights[i][j] = True  
-            #return self.lights
-        
-        elif cmd == 'switch' or cmd == 'switch ':
-            for i in range(y, y1+1):
-                for j in range(x, x1+1):
+            
+                elif cmd == 'switch' or cmd == 'switch ':
                     self.lights[i][j] = not self.lights[i][j]
-#                     if (self.lights[i][j] == False):
-#                         self.lights[i][j] = True
-#                     elif self.lights[i][j] == True:
-#                        self.lights = False
-        return self.lights[i][j]
+                else:
+                    continue
+            
+        return self.lights
                  
     def count(self):
         count = 0
         for i in range (self.N):
             for j in range (self.N): 
                 if self.lights[i][j]:
-                    count += 1 
-                    
+                    count += 1         
         return count
     
 def parse_file():
-#self.link = input("Enter the list of inputs: ")
-    #import sys
-    #f = sys.argv[]
+    
+    #file = sys.argv[]
+    instructions = input("Enter the list of inputs: ")
+    
+    if instructions.startswith("http://"):
+        r = requests.get(instructions)
+        file = r.text.split('\n')
+        N = file[0]
+        pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
+        mylight = lightTester(int(N))
+    
+        for line in file:  
+            m = pat.match(line)
+            if m:
+                array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
+                mylight.apply(array)
 
-    r = requests.get("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt")
-    file = r.text.split('\n')
-    N = file[0]
-    #print(N)
-    pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
-    mylight = lightTester(int(N))
-    
-    for line in file:  
-        m = pat.match(line)
-        if m:
-            array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
-#             print(array)
-            
-            mylight.apply(array)
-        
-            
-    
-    print(mylight.count())
+        print(mylight.count())
     
 if __name__ == '__main__':
     parse_file()

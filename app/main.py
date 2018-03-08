@@ -71,6 +71,8 @@ def parse_file():
                 
     else: 
         file = open(instructions, 'r')
+        N = file[0]
+        mylight = lightTester(int(N))
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
         for line in file:
             m = pat.match(line)

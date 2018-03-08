@@ -80,6 +80,7 @@ def parse_file():
                 mylight = lightTester(N)
 
         for line in fh1:
+            fh1 = open(file, 'r').readlines()
             m = pat.match(line)
             if m:
                 array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]

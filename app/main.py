@@ -1,14 +1,7 @@
 import requests
 import re
 import sys
-# def main(filename, N): #files provided and first line of that file = N  
-#     
-#     lights = lightTester(N)
-#     instructions = lights.parse_file(filename)
-# #     
-#     for cmd in instructions:
-#         lights.apply(cmd)
-
+import os
         
 class lightTester:
     
@@ -62,7 +55,7 @@ def parse_file():
     
     command = sys.argv[1]
     instructions = sys.argv[2]
-    
+
     if instructions.startswith("http://"):
         r = requests.get(instructions)
         file = r.text.split('\n')
@@ -75,7 +68,19 @@ def parse_file():
             if m:
                 array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
                 mylight.apply(array)
-
+        print(mylight.count())
+                
+    elif os.path.exists(instructions):
+        file = open(instructions, 'r')
+        N = file[0]
+        pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
+        mylight = lightTester(int(N))
+    
+        for line in file:  
+            m = pat.match(line)
+            if m:
+                array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
+                mylight.apply(array)
         print(mylight.count())
     
 if __name__ == '__main__':

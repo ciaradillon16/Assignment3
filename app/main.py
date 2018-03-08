@@ -68,11 +68,11 @@ def parse_file():
                 array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
                 mylight.apply(array)
         
-                
+        print(mylight.count())
     else: 
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
         file = sys.argv[2]
-        fh1 = open(file, 'r').readlines()
+        fh1= open(file, 'r').readlines()
         
         if os.path.isfile(file):
             for line in fh1[:1]:

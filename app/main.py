@@ -52,7 +52,6 @@ class lightTester:
         return count
     
 def parse_file():
-    
     command = sys.argv[1]
     instructions = sys.argv[2]
 
@@ -70,7 +69,7 @@ def parse_file():
                 mylight.apply(array)
         print(mylight.count())
                 
-    elif os.path.exists(instructions):
+    else: 
         file = open(instructions, 'r')
         N = file[0]
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")

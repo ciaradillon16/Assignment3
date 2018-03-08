@@ -76,9 +76,8 @@ def parse_file():
         
         for line in file:
             for i in line[:1]:
-                N = i
-                size = int(N)
-                mylight = lightTester(size)
+                N = int(i)
+                mylight = lightTester(N)
                 m = pat.match(line)
                 if m:
                     array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]

@@ -71,10 +71,9 @@ def parse_file():
                 
     else: 
         file = open(instructions, 'r')
-        file = file.readlines()
+        file1 = file.readlines()
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
-        
-        for line in file:
+        for line in file1:
             for i in line[:1]:
                 N = i
                 m = pat.match(line)

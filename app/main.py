@@ -71,14 +71,16 @@ def parse_file():
                 
     else: 
         file = open(instructions, 'r')
-        file1 = file.readlines()
+        file = file.readlines()
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
-        for line in file1:
+        
+        for line in file:
             for i in line[:1]:
                 N = i
+                size = int(N)
+                mylight = lightTester(size)
                 m = pat.match(line)
                 if m:
-                    mylight = lightTester(int(N))
                     array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
                     mylight.apply(array)
         print(mylight.count())

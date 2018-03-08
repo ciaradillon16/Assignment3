@@ -9,6 +9,6 @@ setup(name="light_test",
       license="GPL3",
       packages=['Assingment3'],
       entry_points={
-          'console_scripts':['solve_led=main:main']
+          'console_scripts':['solve_led=app.main:main']
           }
       ) 

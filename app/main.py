@@ -60,8 +60,7 @@ class lightTester:
     
 def parse_file():
     
-    #file = sys.argv[]
-    instructions = input("Enter the list of inputs: ")
+    instructions = sys.argv[1]
     
     if instructions.startswith("http://"):
         r = requests.get(instructions)

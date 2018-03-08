@@ -72,15 +72,14 @@ def parse_file():
     else: 
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
         file = sys.argv[2]
+        fh1 = open(file, 'r').readlines()
         
         if os.path.isfile(file):
-            fh1 = open(file, 'r').readlines()
             for line in fh1[:1]:
                 N = int(line)
                 mylight = lightTester(N)
 
-        for line in fh1:
-            fh1 = open(file, 'r').readlines()
+        for line in file:
             m = pat.match(line)
             if m:
                 array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]

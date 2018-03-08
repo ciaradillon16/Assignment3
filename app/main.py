@@ -74,7 +74,7 @@ def parse_file():
         file = file.readlines()
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
         
-        for line in file[:1]:
+        for line in int(file[:1]):
             N = line[0]
         
         for line in file:

@@ -71,6 +71,7 @@ def parse_file():
                 
     else: 
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
+        file = sys.argv[2]
         
         if os.path.isfile(file):
             fh1 = open(file, 'r').readlines()

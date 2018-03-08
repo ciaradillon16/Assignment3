@@ -54,12 +54,12 @@ class lightTester:
 def parse_file():
     command = sys.argv[1]
     instructions = sys.argv[2]
+    pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
 
     if instructions.startswith("http://"):
         r = requests.get(instructions)
         file = r.text.split('\n')
         N = file[0]
-        pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
         mylight = lightTester(int(N))
     
         for line in file:  
@@ -67,19 +67,18 @@ def parse_file():
             if m:
                 array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
                 mylight.apply(array)
-        print(mylight.count())
+        
                 
     else: 
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
         
         if os.path.isfile(file):
             fh1 = open(file, 'r').readlines()
-                for line in fh1[:1]:
-                    N = int(line)
-                    #print(N)
-        
+            for line in fh1[:1]:
+                N = int(line)
+                mylight = lightTester(N)
+
         for line in fh1:
-            mylight = lightTester(N)
             m = pat.match(line)
             if m:
                 array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]

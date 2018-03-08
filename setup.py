@@ -7,7 +7,7 @@ setup(name="light_test",
       author="Ciara Dillon", 
       author_email="ciara.dillon1@ucdconnect.ie",
       license="GPL3",
-      packages=['Assingment3'],
+      packages=['Assignment3'],
       entry_points={
           'console_scripts':['solve_led=app.main:main']
           }

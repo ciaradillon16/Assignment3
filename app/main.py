@@ -86,9 +86,7 @@ def parse_file():
             if m:
                 array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
                 mylight.apply(array)
-            
-        
-                print(mylight.count())
+        print(mylight.count())
      
     # Case for parsing local files 
     else: 
@@ -103,7 +101,6 @@ def parse_file():
             if m:
                 array = [m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)]
                 mylight.apply(array)
-         
         print(mylight.count())
     
 if __name__ == '__main__':

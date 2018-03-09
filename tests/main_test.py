@@ -1,5 +1,5 @@
 class Test(unittest.TestCase):
-#     
+     
     def test_apply_function(self):
         test1 = lightTester(5)
         test1.apply(["switch", 0, 0, 1, 1])

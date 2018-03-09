@@ -2,10 +2,8 @@
 import requests
 import re
 import sys
-import os #Not needed as parsing local files is not working correctly, but have included 
+import os 
         
-
-
 class lightTester:
     """ This class applies the commands 'turn on', 'turn off' and 'switch' to an LED lightboard
     of any size. It turns on the lights in coordinate pairs. The count function then counts how many
@@ -91,12 +89,9 @@ def parse_file():
         
         print(mylight.count())
      
+    # Case for parsing local files 
     else: 
-        pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
-        command = sys.argv[1]
-        file = sys.argv[2]
-        fh1= open(instructions, 'r').readlines()
-        #         
+        fh1= open(instructions, 'r').readlines()       
         if os.path.isfile(instructions):
             for line in fh1[:1]:
                 N = int(line)

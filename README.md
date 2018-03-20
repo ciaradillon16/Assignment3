@@ -5,6 +5,8 @@ Light-Tester Application || Assignment 3
 This program is installed on your machine and takes in inputs to determine how many lights
 are switched on on a LED board of lights. 
 
+The code for this program is contained in the app folder.
+
 -----------------------------------------------
 
 To run this program: 

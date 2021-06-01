@@ -35,7 +35,7 @@ six==1.11.0
 systeminfo==0.1
 uritemplate==3.0.0
 uritemplate.py==3.0.2
-urllib3==1.22
+urllib3==1.26.5
 virtualenv==15.1.0
 Werkzeug==0.14.1
 whelk==2.7.1
